@@ -1,0 +1,32 @@
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"> </script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
+
+<canvas id="canvas" width="800" height="1000"></canvas>
+
+<script>
+    var img = new Image();
+    img.src = 'bus.jpg';
+    img.onload = function() {
+        cocoSsd.load().then(model => {
+            model.detect(img).then(predictions => {
+                console.log('Predictions: ', predictions);
+                const c = document.getElementById('canvas');
+                const context = c.getContext('2d');
+                context.drawImage(img, 0, 0);
+                context.font = 'bold 20px Arial';
+                for (let i = 0; i < predictions.length; i++) {
+                        context.beginPath();
+                        context.rect(...predictions[i].bbox);
+                        context.lineWidth = 2;
+                        context.strokeStyle = 'green';
+                        context.fillStyle = 'yellow';
+                        context.stroke();
+                        context.fillText(
+                            predictions[i].class, predictions[i].bbox[0],
+                            predictions[i].bbox[1] > 10 ? predictions[i].bbox[1] - 5 : 10);
+                }
+            });
+        });
+    }
+  
+</script>
