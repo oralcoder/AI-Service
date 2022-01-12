@@ -14,7 +14,7 @@
 
 전원을 끈 상태에서 `**ESC + Refresh(F3) + Power**` 버튼을 동시에 눌러 리커버리 모드로 진입
 
-![<리커버리 모드>](../img/Untitled.png)
+![<리커버리 모드>](./img/Untitled.png)
 
                                                                  <리커버리 모드>
 
